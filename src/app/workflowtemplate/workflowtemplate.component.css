@@ -1,0 +1,14 @@
+.select-wrapper {
+  display: block;
+  padding-top: 10px;
+}
+
+.inner-select-wrapper{
+  display: block;
+  padding-bottom: 20px;
+}
+
+.templateVeiw ul li{
+  display: inline-block;
+  margin-left: 40px;
+}

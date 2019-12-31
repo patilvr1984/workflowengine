@@ -1,0 +1,88 @@
+<ul style="list-style-type: none; margin-top: 10px;">
+  <li>
+    <!--<div class="select-wrapper">-->
+      <div>
+        <label><h5><b>Template Config</b></h5></label>
+        <button igxButton="raised" igxRipple="white" (click)="alert.open()" style="margin-left: 30px">Add New Template</button>
+      </div>
+
+      <igx-select #select (onSelection)="showTemplate($event)">
+        <label igxLabel>Select Template</label>
+        <igx-select-item *ngFor="let template of templateConfiguration.Template"  [value]="template.">
+          {{template.templateId}}-{{template.templateName}}
+        </igx-select-item>
+      </igx-select>
+
+  </li>
+  <li class="templateVeiw">
+    <ul style="list-style-type: none;">
+      <li *ngIf="showTemplateView" style="padding-top: 20px;" >
+        <igx-card type="outlined" style="width: 400px;">
+          <igx-card-content>
+            <div>
+              <label style=" background-color: lightskyblue"><h6><b>Template - Step 1 property of template</b></h6></label>
+              <label style="margin-top: 10px">Template Name</label>
+              <igx-input-group type="border">
+                <input igxInput name="newTemplateName" type="text" [(ngModel)]="selectedTemplate.templateName" required="required" />
+              </igx-input-group>
+              <label style="margin-top: 10px">Template Description</label>
+              <igx-input-group type="border">
+                <textarea igxInput name="newTemplateDesc"  type="text" [(ngModel)]="selectedTemplate.templateDesc" required="required"></textarea>
+              </igx-input-group>
+            </div>
+          </igx-card-content>
+        </igx-card>
+      </li>
+      <li *ngIf="showTemplateView" style="padding-top: 20px;" >
+        <igx-card type="outlined" style="width: 500px;">
+          <igx-card-content>
+            <div>
+              <label style=" background-color: lightskyblue"><h6><b>Template - Step 2 Add/remove timestamps and operations</b></h6></label>
+              {{ jsonString | json }}
+            </div>
+          </igx-card-content>
+        </igx-card>
+      </li>
+      <li *ngIf="showTemplateView" style="padding-top: 10px;" >
+        <igx-card type="outlined" style="width: 400px;">
+          <igx-card-content>
+            <div>
+              <label style=" background-color: lightskyblue;margin-top: 10px"><h6><b>Case types</b></h6></label>
+
+            </div>
+          </igx-card-content>
+        </igx-card>
+      </li>
+    </ul>
+  </li>
+
+</ul>
+
+
+
+
+  <!-- Dialog box for adding new template -->
+  <igx-dialog #alert
+              leftButtonLabel="Save"
+              rightButtonLabel="Cancel"
+              [closeOnOutsideSelect]="true"
+              (onLeftButtonSelect)="onNewTemplateSave($event)"
+              (onRightButtonSelect)="alert.close()"
+              >
+    <div style="width: 550px">
+      <label><h6><b>Add new template</b></h6></label>
+      <form>
+      <igx-input-group type="border" style="margin-top: 10px; margin-right: 10px; margin-left: 10px; margin-bottom: 10px">
+        <label igxLabel for="newTemplateName">Template name</label>
+        <input igxInput name="newTemplateName" type="text" [(ngModel)]="newTemplateName" required="required" />
+      </igx-input-group>
+      <igx-input-group type="border" style="margin-top: 10px; margin-right: 10px; margin-left: 10px; margin-bottom: 10px">
+        <label igxLabel for="newTemplateDesc">Template Description</label>
+        <textarea igxInput name="newTemplateDesc" type="text" [(ngModel)]="newTemplateDesc" required="required"></textarea>
+
+      </igx-input-group>
+      </form>
+    </div>
+  </igx-dialog>
+
+
